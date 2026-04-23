@@ -31,12 +31,12 @@ export function StatCard({ label, value, color, icon: Icon, sub }) {
 }
 
 const LOG_STYLES = {
-  info:    { color: 'var(--blue)',        Icon: Info },
-  success: { color: 'var(--accent)',      Icon: CheckCircle },
+  info:    { color: 'var(--blue)',       Icon: Info },
+  success: { color: 'var(--accent)',     Icon: CheckCircle },
   skip:    { color: 'var(--text-muted)', Icon: XCircle },
-  ai:      { color: 'var(--purple)',      Icon: Zap },
-  error:   { color: 'var(--red)',         Icon: AlertCircle },
-  done:    { color: 'var(--accent)',      Icon: CheckCircle },
+  ai:      { color: 'var(--purple)',     Icon: Zap },
+  error:   { color: 'var(--red)',        Icon: AlertCircle },
+  done:    { color: 'var(--accent)',     Icon: CheckCircle },
 }
 
 export function LogItem({ log }) {
@@ -97,5 +97,19 @@ export function MatchBadge({ score }) {
 }
 
 export function StatusBadge({ status }) {
-  const map    = { pending:'badge-amber', applied:'badge-green', review:'badge-blue', skipped:'badge-gray' }
-  const
+  const map = { pending:'badge-amber', applied:'badge-green', review:'badge-blue', skipped:'badge-gray' }
+  const labels = { pending:'Pending', applied:'Applied', review:'In Review', skipped:'Skipped' }
+  return <span className={`badge ${map[status] || 'badge-gray'}`}>{labels[status] || status}</span>
+}
+
+export function EmptyState({ icon: Icon, title, description }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{ background: 'var(--bg-elevated)' }}>
+        <Icon size={20} style={{ color: 'var(--text-muted)' }} />
+      </div>
+      <p className="font-medium mb-1" style={{ color: 'var(--text-primary)' }}>{title}</p>
+      <p className="text-sm" style={{ color: 'var(--text-muted)' }}>{description}</p>
+    </div>
+  )
+}
