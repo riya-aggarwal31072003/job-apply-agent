@@ -7,6 +7,7 @@ import Profile from './pages/Profile.jsx'
 import Preferences from './pages/Preferences.jsx'
 import Jobs from './pages/Jobs.jsx'
 import CoverLetter from './pages/CoverLetter.jsx'
+import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
@@ -14,34 +15,32 @@ export default function App() {
 
       <Sidebar />
 
-      <main style={{ flex:1, overflowY:'auto', background:'var(--bg-primary)', position:'relative' }}>
+      <main style={{ flex:1, overflowY:'auto', background:'var(--bg-primary)', position:'relative', display:'flex', flexDirection:'column' }}>
 
-        {/* Grid pattern background */}
-        <div
-          className="grid-pattern"
-          style={{ position:'absolute', inset:0, pointerEvents:'none', opacity:0.4, zIndex:0 }}
-        />
+        <div className='grid-pattern' style={{ position:'absolute', inset:0, pointerEvents:'none', opacity:0.4, zIndex:0 }} />
 
-        {/* Page content */}
-        <div style={{ position:'relative', zIndex:10, maxWidth:896, margin:'0 auto', padding:'2rem' }}>
+        <div style={{ position:'relative', zIndex:10, maxWidth:896, margin:'0 auto', padding:'2rem', width:'100%', flex:1 }}>
           <Routes>
-            <Route path="/"        element={<Dashboard />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/prefs"   element={<Preferences />} />
-            <Route path="/jobs"    element={<Jobs />} />
-            <Route path="/cover"   element={<CoverLetter />} />
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/prefs' element={<Preferences />} />
+            <Route path='/jobs' element={<Jobs />} />
+            <Route path='/cover' element={<CoverLetter />} />
           </Routes>
         </div>
+
+        <Footer />
+
       </main>
 
       <Toaster
-        position="bottom-right"
+        position='bottom-right'
         toastOptions={{
           style: {
             background: 'var(--bg-elevated)',
-            color:      'var(--text-primary)',
-            border:     '1px solid var(--border)',
-            fontSize:   13,
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border)',
+            fontSize: 13,
             fontFamily: 'DM Sans, sans-serif',
           },
           success: { iconTheme: { primary:'#4ade80', secondary:'#0a0e1a' } },
